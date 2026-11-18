@@ -1,6 +1,6 @@
-# $USM — Up So Much
+# $UTP — Up Too Much
 
-Landing page for **$USM** on Solana. FOMO was the fear. COPE was the aftermath. USM is what you say when it actually happens.
+Landing page for **$UTP** on Solana. FOMO was the fear. COPE was the aftermath. UTP is what you say when it actually happens.
 
 Static site (plain HTML/CSS/JS), no build step. Drop it on Vercel, Netlify or GitHub Pages as-is.
 
@@ -9,7 +9,7 @@ Static site (plain HTML/CSS/JS), no build step. Drop it on Vercel, Netlify or Gi
 Open `main.js` and fill in the config at the top:
 
 ```js
-const USM = {
+const UTP = {
   X_URL: "https://x.com/...", // X / Twitter link
   CA: "..."                    // Solana contract address
 };

@@ -1,8 +1,8 @@
 /* =========================================================
-   $USM — config. Fill these in when they're ready.
+   $UTP — config. Fill these in when they're ready.
    ========================================================= */
-const USM = {
-  X_URL: "",   // e.g. "https://x.com/upsomuch"
+const UTP = {
+  X_URL: "",   // e.g. "https://x.com/yourhandle"
   CA: ""       // Solana contract address
 };
 
@@ -22,20 +22,20 @@ const USM = {
   };
 
   /* ---------- CA + X ---------- */
-  $$(".js-ca-text").forEach((el) => (el.textContent = USM.CA || "coming soon"));
+  $$(".js-ca-text").forEach((el) => (el.textContent = UTP.CA || "coming soon"));
   $$(".js-ca").forEach((btn) =>
     btn.addEventListener("click", async () => {
-      if (!USM.CA) return toast("CA not live yet. It drops on X first.");
+      if (!UTP.CA) return toast("CA not live yet. It drops on X first.");
       try {
-        await navigator.clipboard.writeText(USM.CA);
-        toast("CA copied. usm.");
+        await navigator.clipboard.writeText(UTP.CA);
+        toast("CA copied. utp.");
       } catch {
-        toast(USM.CA);
+        toast(UTP.CA);
       }
     })
   );
   $$(".js-x").forEach((a) => {
-    if (USM.X_URL) a.href = USM.X_URL;
+    if (UTP.X_URL) a.href = UTP.X_URL;
     else
       a.addEventListener("click", (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ const USM = {
   });
 
   /* ---------- flying words ---------- */
-  const fly = (x, y, text = "USM") => {
+  const fly = (x, y, text = "UTP") => {
     const s = document.createElement("span");
     s.className = "fly";
     s.textContent = text;
@@ -109,7 +109,7 @@ const USM = {
   const altitude = () => {
     const y = scrollY + innerHeight * 0.5;
     const maxY = document.documentElement.scrollHeight - innerHeight;
-    if (scrollY >= maxY - 4) return { ft: null, name: "up so much" };
+    if (scrollY >= maxY - 4) return { ft: null, name: "up too much" };
     let i = 0;
     while (i < stops.length - 1 && stops[i + 1].el.offsetTop <= y) i++;
     const a = stops[i];
@@ -137,7 +137,7 @@ const USM = {
     }
 
     const { ft, name } = altitude();
-    altV.textContent = ft === null ? "USM" : fmt(ft + bonus);
+    altV.textContent = ft === null ? "UTP" : fmt(ft + bonus);
     altBox.classList.toggle("top", ft === null);
     altL.textContent = name;
     altTicks.style.transform = `translateY(${((y * 0.6) % 60).toFixed(1)}px)`;
@@ -204,7 +204,7 @@ const USM = {
 
   /* ---------- split-flap board ---------- */
   const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-:$";
-  const widths = [5, 4, 10, 9];
+  const widths = [5, 4, 11, 9];
   const flapRows = $$(".flap-row[data-row]");
   flapRows.forEach((row) => {
     const parts = row.dataset.row.split("|");
@@ -245,7 +245,7 @@ const USM = {
         }, start);
       });
     });
-    setTimeout(() => $(".flap-row.is-usm").classList.add("lit"), flapRows.length * 260 + 2400);
+    setTimeout(() => $(".flap-row.is-utp").classList.add("lit"), flapRows.length * 260 + 2400);
   };
   const flapIO = new IntersectionObserver((en) => {
     if (en[0].isIntersecting) {
@@ -259,7 +259,7 @@ const USM = {
   const sayBtn = $("#sayBtn");
   const sayCount = $("#sayCount");
   let count = 0;
-  try { count = parseInt(localStorage.getItem("usm_said") || "0", 10) || 0; } catch {}
+  try { count = parseInt(localStorage.getItem("utp_said") || "0", 10) || 0; } catch {}
   bonus = count * 1000;
   sayCount.textContent = fmt(count);
 
@@ -267,9 +267,9 @@ const USM = {
     count++;
     bonus = count * 1000;
     sayCount.textContent = fmt(count);
-    try { localStorage.setItem("usm_said", String(count)); } catch {}
+    try { localStorage.setItem("utp_said", String(count)); } catch {}
     const r = sayBtn.getBoundingClientRect();
-    const words = ["USM", "usm", "USM", "up so much", "USM", "usm."];
+    const words = ["UTP", "utp", "UTP", "up too much", "UTP", "utp."];
     fly(r.left + r.width / 2, r.top + r.height / 2, words[count % words.length]);
     altBox.classList.remove("bump");
     void altBox.offsetWidth;
