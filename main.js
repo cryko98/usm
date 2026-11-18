@@ -1,7 +1,7 @@
 /* =========================================================
-   $UTP — config. Fill these in when they're ready.
+   $UTM — config. Fill these in when they're ready.
    ========================================================= */
-const UTP = {
+const UTM = {
   X_URL: "",   // e.g. "https://x.com/yourhandle"
   CA: ""       // Solana contract address
 };
@@ -22,20 +22,20 @@ const UTP = {
   };
 
   /* ---------- CA + X ---------- */
-  $$(".js-ca-text").forEach((el) => (el.textContent = UTP.CA || "coming soon"));
+  $$(".js-ca-text").forEach((el) => (el.textContent = UTM.CA || "coming soon"));
   $$(".js-ca").forEach((btn) =>
     btn.addEventListener("click", async () => {
-      if (!UTP.CA) return toast("CA not live yet. It drops on X first.");
+      if (!UTM.CA) return toast("CA not live yet. It drops on X first.");
       try {
-        await navigator.clipboard.writeText(UTP.CA);
-        toast("CA copied. utp.");
+        await navigator.clipboard.writeText(UTM.CA);
+        toast("CA copied. utm.");
       } catch {
-        toast(UTP.CA);
+        toast(UTM.CA);
       }
     })
   );
   $$(".js-x").forEach((a) => {
-    if (UTP.X_URL) a.href = UTP.X_URL;
+    if (UTM.X_URL) a.href = UTM.X_URL;
     else
       a.addEventListener("click", (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ const UTP = {
   });
 
   /* ---------- flying words ---------- */
-  const fly = (x, y, text = "UTP") => {
+  const fly = (x, y, text = "UTM") => {
     const s = document.createElement("span");
     s.className = "fly";
     s.textContent = text;
@@ -137,7 +137,7 @@ const UTP = {
     }
 
     const { ft, name } = altitude();
-    altV.textContent = ft === null ? "UTP" : fmt(ft + bonus);
+    altV.textContent = ft === null ? "UTM" : fmt(ft + bonus);
     altBox.classList.toggle("top", ft === null);
     altL.textContent = name;
     altTicks.style.transform = `translateY(${((y * 0.6) % 60).toFixed(1)}px)`;
@@ -245,7 +245,7 @@ const UTP = {
         }, start);
       });
     });
-    setTimeout(() => $(".flap-row.is-utp").classList.add("lit"), flapRows.length * 260 + 2400);
+    setTimeout(() => $(".flap-row.is-utm").classList.add("lit"), flapRows.length * 260 + 2400);
   };
   const flapIO = new IntersectionObserver((en) => {
     if (en[0].isIntersecting) {
@@ -259,7 +259,7 @@ const UTP = {
   const sayBtn = $("#sayBtn");
   const sayCount = $("#sayCount");
   let count = 0;
-  try { count = parseInt(localStorage.getItem("utp_said") || "0", 10) || 0; } catch {}
+  try { count = parseInt(localStorage.getItem("utm_said") || "0", 10) || 0; } catch {}
   bonus = count * 1000;
   sayCount.textContent = fmt(count);
 
@@ -267,9 +267,9 @@ const UTP = {
     count++;
     bonus = count * 1000;
     sayCount.textContent = fmt(count);
-    try { localStorage.setItem("utp_said", String(count)); } catch {}
+    try { localStorage.setItem("utm_said", String(count)); } catch {}
     const r = sayBtn.getBoundingClientRect();
-    const words = ["UTP", "utp", "UTP", "up too much", "UTP", "utp."];
+    const words = ["UTM", "utm", "UTM", "up too much", "UTM", "utm."];
     fly(r.left + r.width / 2, r.top + r.height / 2, words[count % words.length]);
     altBox.classList.remove("bump");
     void altBox.offsetWidth;
