@@ -199,6 +199,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ca:hover{border-color:var(--gold);background:rgba(6,16,52,.6)}
 .ca-k{font-size:11px;background:var(--cream);color:var(--ink);padding:2px 7px;border-radius:4px;font-weight:600}
 .ca-v{font-size:14px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.js-ca-text:has(.ca-head){display:flex;min-width:0}
+.ca-head{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.steps a{color:var(--gold);text-underline-offset:3px}
 .ca-i{opacity:.7}
 .btn{
   display:inline-flex;align-items:center;gap:10px;text-decoration:none;border-radius:999px;padding:13px 22px;

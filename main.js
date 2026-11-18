@@ -3,7 +3,7 @@
    ========================================================= */
 const UTM = {
   X_URL: "",   // e.g. "https://x.com/yourhandle"
-  CA: ""       // Solana contract address
+  CA: "BzLRo9cRvi7KL9XJ9EGAEi4oGCKLFkBEKvJx9D6Apump"   // Solana contract address
 };
 
 (() => {
@@ -22,7 +22,24 @@ const UTM = {
   };
 
   /* ---------- CA + X ---------- */
-  $$(".js-ca-text").forEach((el) => (el.textContent = UTM.CA || "coming soon"));
+  $$(".js-ca-text").forEach((el) => {
+    if (!UTM.CA) return (el.textContent = "coming soon");
+    const head = document.createElement("span");
+    head.className = "ca-head";
+    head.textContent = UTM.CA.slice(0, -6);
+    const tail = document.createElement("span");
+    tail.textContent = UTM.CA.slice(-6);
+    el.replaceChildren(head, tail);
+    el.title = UTM.CA;
+  });
+  const BUY_URL = UTM.CA ? "https://pump.fun/coin/" + UTM.CA : "";
+  const CHART_URL = UTM.CA ? "https://dexscreener.com/solana/" + UTM.CA : "";
+  [[".js-buy", BUY_URL], [".js-chart", CHART_URL]].forEach(([sel, url]) =>
+    $$(sel).forEach((a) => {
+      if (url) a.href = url;
+      else a.addEventListener("click", (e) => { e.preventDefault(); toast("Not live yet. Soon."); });
+    })
+  );
   $$(".js-ca").forEach((btn) =>
     btn.addEventListener("click", async () => {
       if (!UTM.CA) return toast("CA not live yet. It drops on X first.");
