@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>$UTM — The Climb</title>
+<meta name="description" content="Ride the chart. Land on green. Dodge the rug. How far up too much can you go?">
+<meta name="theme-color" content="#0a1a4f">
+<link rel="canonical" href="https://www.uptoomuch.fun/play/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="$UTM">
+<meta property="og:url" content="https://www.uptoomuch.fun/play/">
+<meta property="og:title" content="$UTM — The Climb">
+<meta property="og:description" content="Ride the chart. Land on green. Dodge the rug. There is no top.">
+<meta property="og:image" content="https://www.uptoomuch.fun/assets/og.jpg">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="660">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$UTM — The Climb">
+<meta name="twitter:description" content="Ride the chart. Land on green. Dodge the rug. There is no top.">
+<meta name="twitter:image" content="https://www.uptoomuch.fun/assets/og.jpg">
+<link rel="icon" href="../logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="game.css">
+</head>
+<body class="is-menu">
+
+<canvas id="game" aria-label="The climb: a cat bouncing up a candlestick chart"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- HUD -->
+<header class="hud">
+  <a class="hud-home" href="../" aria-label="Back to the $UTM site">
+    <span class="hud-dot"><img src="../assets/cat.png" alt=""></span>
+    <span class="hud-tick">$UTM</span>
+  </a>
+  <div class="hud-mc" aria-live="off">
+    <small class="mono">market cap</small>
+    <b id="mc">$4.20K</b>
+    <span class="hud-sub"><span class="mono" id="pct">▲ 0%</span><span class="streak mono" id="streak"><span id="streakN">×0</span> streak</span></span>
+    <canvas class="mini" id="mini" aria-hidden="true"></canvas>
+  </div>
+  <div class="hud-right">
+    <span class="hud-bags mono"><i></i><b id="bags">0</b></span>
+    <button class="hud-btn" id="mute" type="button" aria-label="Mute music" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="on" d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/><path class="off" d="M4 9v6h4l5 4V5L8 9H4zm12.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg>
+    </button>
+  </div>
+</header>
+
+<aside class="feed-wrap" aria-hidden="true">
+  <div class="feed-h mono"><i></i>live trades · $UTM</div>
+  <ol class="feed mono" id="feed"></ol>
+</aside>
+
+<div class="banner" id="banner" aria-hidden="true"><span class="mono">now entering</span><b id="bannerT">stratosphere</b></div>
+<div class="milestone" id="milestone" aria-hidden="true"><b id="msX">10X</b><span id="msT">i’m up too much</span></div>
+
+<!-- START -->
+<section class="screen screen-start" id="start">
+  <div class="start-top">
+    <div class="kicker mono"><span>$UTM</span><span>the climb</span><span id="bestStart"></span></div>
+    <h1 class="title"><span>UP</span><span class="serif">too</span><span>MUCH</span></h1>
+    <p class="lede"><span class="serif">Ride the chart.</span> Land on green. Dodge the rug. There is no top.</p>
+  </div>
+  <div class="start-bottom">
+    <ul class="legend mono">
+      <li><i class="lg lg-g"></i>green — bounce</li>
+      <li><i class="lg lg-r"></i>red — rug</li>
+      <li><i class="lg lg-y"></i>god candle</li>
+      <li><i class="lg lg-c"></i>bag $UTM</li>
+      <li><i class="lg lg-f">FUD</i>dodge</li>
+    </ul>
+    <button class="go" id="play" type="button">send it <span aria-hidden="true">↑</span></button>
+    <p class="controls mono"><span class="k">←</span><span class="k">→</span> or <span class="k">A</span><span class="k">D</span> · drag on mobile · <span class="k">M</span> mute</p>
+  </div>
+</section>
+
+<!-- GAME OVER -->
+<section class="screen screen-over" id="over" hidden>
+  <div class="over-card">
+    <div class="kicker mono"><span>position closed</span><span class="ath" id="ath" hidden>new ATH</span></div>
+    <h2 class="rekt">rugged<span>.</span></h2>
+    <p class="quip serif" id="quip">you were up too much. then you weren’t.</p>
+    <dl class="stats mono">
+      <div><dt>peak mc</dt><dd id="sPeak">—</dd></div>
+      <div><dt>from launch</dt><dd id="sX">—</dd></div>
+      <div><dt>$UTM bagged</dt><dd id="sBags">—</dd></div>
+      <div><dt>your best</dt><dd id="sBest">—</dd></div>
+    </dl>
+    <div class="over-actions">
+      <button class="go" id="again" type="button">again <span aria-hidden="true">↑</span></button>
+      <a class="share mono" id="share" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        share your bag
+      </a>
+    </div>
+    <a class="back mono" href="../">← back to the site</a>
+  </div>
+</section>
+
+<audio id="music" src="../assets/music.m4a" loop preload="auto"></audio>
+<script src="game.js"></script>
+</body>
+</html>

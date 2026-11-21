@@ -526,10 +526,72 @@ section{position:relative}
 .descend:hover{opacity:1;color:var(--gold)}
 .disclaimer{position:relative;font-size:11px;opacity:.45;max-width:80ch;margin:30px 0 0;line-height:1.6}
 
+/* ---------- nav: play ---------- */
+.nav-r{display:flex;align-items:center;gap:10px}
+.playbtn{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  background:var(--ginger);color:var(--ink);border-radius:999px;padding:9px 16px 9px 12px;
+  font-family:var(--mono);font-size:13px;font-weight:600;box-shadow:0 4px 0 var(--ginger-d);
+  transition:transform .2s var(--ease), box-shadow .2s;
+}
+.playbtn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ginger-d)}
+.playbtn-i{font-size:10px;animation:nudge 1.6s var(--ease) infinite}
+@keyframes nudge{0%,100%{transform:translateY(1px)}50%{transform:translateY(-3px)}}
+
+/* ---------- the climb (game promo) ---------- */
+.climb{
+  position:relative;overflow:hidden;padding:clamp(90px,11vw,160px) var(--pad);
+  background:linear-gradient(180deg, #081544 0%, #071139 100%);
+}
+.climb .stars{position:absolute;inset:0;width:100%;height:100%}
+.climb-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center}
+.climb-lede{font-size:clamp(18px,1.7vw,23px);line-height:1.4;max-width:36ch;margin:26px 0 34px;opacity:.9}
+.climb-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.climb-hint{font-size:12px;opacity:.6}
+.climb-stage{
+  position:relative;display:block;aspect-ratio:4/4.4;max-height:560px;width:100%;border-radius:22px;overflow:hidden;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 59px, rgba(255,242,223,.07) 59px 60px),
+    radial-gradient(ellipse at 50% 110%, rgba(61,134,230,.55), transparent 60%),
+    linear-gradient(180deg, #0a1a4f, #12348f);
+  border:1px solid rgba(255,242,223,.16);box-shadow:0 40px 80px rgba(0,0,0,.35);
+  transition:transform .4s var(--ease);
+}
+.climb-stage:hover{transform:translateY(-6px) rotate(-.6deg)}
+.cs-line{position:absolute;inset:0;width:100%;height:100%}
+.cs-line polyline{fill:none;stroke:rgba(92,255,157,.5);stroke-width:.5;vector-effect:non-scaling-stroke;stroke-width:2}
+.cs-c{
+  position:absolute;left:var(--x);top:var(--y);width:16%;height:var(--h);transform:translate(-50%,0);border-radius:4px;
+  background:linear-gradient(#7dffb4,#16b862);box-shadow:0 0 0 5px rgba(92,255,157,.16);
+}
+.cs-c::before{content:"";position:absolute;left:50%;top:-14px;bottom:-12px;width:2px;transform:translateX(-50%);background:inherit;z-index:-1;opacity:.8}
+.cs-r{background:linear-gradient(#ff7a87,#b3162b);box-shadow:0 0 0 5px rgba(255,92,108,.16)}
+.cs-y{background:linear-gradient(#fff2b0,#ffae1f);box-shadow:0 0 0 6px rgba(255,211,107,.3), 0 0 40px rgba(255,211,107,.6);animation:godpulse 1.6s ease-in-out infinite}
+@keyframes godpulse{50%{box-shadow:0 0 0 9px rgba(255,211,107,.2), 0 0 60px rgba(255,211,107,.8)}}
+.cs-cat{
+  position:absolute;left:62%;top:48%;width:32%;transform:translate(-50%,-92%);
+  filter:drop-shadow(0 18px 20px rgba(0,0,0,.4));animation:csHop 1.5s cubic-bezier(.3,0,.4,1) infinite;
+}
+@keyframes csHop{
+  0%,100%{transform:translate(-50%,-88%) scale(1.06,.9)}
+  12%{transform:translate(-50%,-92%) scale(.94,1.06)}
+  50%{transform:translate(-50%,-138%) scale(1,1)}
+  88%{transform:translate(-50%,-92%) scale(1,1)}
+}
+.cs-say{
+  position:absolute;left:8%;top:34%;transform:rotate(-6deg);
+  font-weight:900;font-variation-settings:"wdth" 70;font-size:clamp(24px,3vw,40px);color:var(--gold);
+  -webkit-text-stroke:5px var(--ink);paint-order:stroke fill;animation:csSay 3s var(--ease) infinite;
+}
+@keyframes csSay{0%{opacity:0;transform:translateY(10px) rotate(-6deg) scale(.7)}12%,70%{opacity:1;transform:translateY(0) rotate(-6deg) scale(1)}100%{opacity:0;transform:translateY(-24px) rotate(-6deg)}}
+.cs-mc{position:absolute;left:18px;top:16px;font-size:12px;letter-spacing:.06em;opacity:.9}
+.cs-mc b{font-family:var(--sans);font-weight:900;font-variation-settings:"wdth" 70;font-size:22px;margin:0 6px}
+.cs-mc i{font-style:normal;color:#5cff9d}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px){
   .nav-links{display:none}
-  .word-grid,.say-grid,.pilot-grid,.board-grid{grid-template-columns:1fr}
+  .word-grid,.say-grid,.pilot-grid,.board-grid,.climb-grid{grid-template-columns:1fr}
   .runhead span:nth-child(2){display:none}
   .pilot-copy{order:-1}
   .alt-tape,.alt-layer{display:none}
@@ -573,6 +635,9 @@ section{position:relative}
   .pass-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
   .defs li{padding-left:48px}
   .defs li::before{font-size:40px}
+  .nav .xbtn span{display:none}
+  .nav .xbtn{padding:9px}
+  .playbtn{padding:9px 14px 9px 11px}
   .space{min-height:70vh}
 }
 
@@ -584,7 +649,7 @@ section{position:relative}
 
 /* keep content clear of the altimeter on desktop */
 @media (min-width: 901px){
-  .word,.lex,.say,.pilot,.board{padding-right:max(var(--pad), 120px)}
+  .word,.lex,.say,.pilot,.climb,.board{padding-right:max(var(--pad), 120px)}
   .log-utm{margin-right:calc(max(var(--pad), 120px) * -1);padding-right:max(var(--pad), 120px)}
 }
 .alt.top .alt-read .alt-k:last-child{display:none}

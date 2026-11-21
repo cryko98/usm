@@ -45,10 +45,13 @@
     <a href="#say">say it</a>
     <a href="#board">board</a>
   </nav>
-  <a class="xbtn js-x" href="#" target="_blank" rel="noopener" aria-label="$UTM on X">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    <span>follow</span>
-  </a>
+  <div class="nav-r">
+    <a class="playbtn" href="play/"><span class="playbtn-i" aria-hidden="true">▲</span>play</a>
+    <a class="xbtn js-x" href="#" target="_blank" rel="noopener" aria-label="$UTM on X">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>follow</span>
+    </a>
+  </div>
 </header>
 
 <!-- ===== ALTIMETER ===== -->
@@ -261,6 +264,34 @@
         <div><dt>status</dt><dd class="blink">still going up</dd></div>
       </dl>
     </div>
+  </div>
+</section>
+
+<!-- ===== THE CLIMB (game) ===== -->
+<section class="climb" id="climb">
+  <canvas class="stars" data-density="1"></canvas>
+  <div class="climb-grid">
+    <div class="climb-copy">
+      <div class="kicker mono">§04½ — the climb · a game</div>
+      <h2 class="h2">Go up<br><em>too much.</em></h2>
+      <p class="climb-lede">Steer the pilot up a live chart. Green candles bounce you. Red ones are rugs. Gold is a god candle. FUD clouds knock you back down. The market cap is your score.</p>
+      <div class="climb-actions">
+        <a class="btn btn-ginger" href="play/">play the climb <span aria-hidden="true">↑</span></a>
+        <span class="mono climb-hint">works on phone · sound on</span>
+      </div>
+    </div>
+    <a class="climb-stage" href="play/" aria-label="Play the climb">
+      <span class="cs-c cs-g" style="--x:18%;--y:86%;--h:30px"></span>
+      <span class="cs-c cs-g" style="--x:44%;--y:74%;--h:40px"></span>
+      <span class="cs-c cs-r" style="--x:82%;--y:64%;--h:26px"></span>
+      <span class="cs-c cs-g" style="--x:24%;--y:60%;--h:36px"></span>
+      <span class="cs-c cs-y" style="--x:62%;--y:48%;--h:52px"></span>
+      <span class="cs-c cs-g" style="--x:38%;--y:24%;--h:38px"></span>
+      <svg class="cs-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="18,86 44,74 24,60 62,48 38,24"/></svg>
+      <img class="cs-cat" src="assets/cat-up.png" alt="">
+      <span class="cs-say">i’m up too much</span>
+      <span class="cs-mc mono">mc <b>$4.2M</b> <i>▲ 99,900%</i></span>
+    </a>
   </div>
 </section>
 
