@@ -16,7 +16,7 @@
 
   /* ---------- assets ---------- */
   const load = (src) => { const i = new Image(); i.src = src; return i; };
-  const IMG = { up: load("../assets/cat-up.png"), down: load("../assets/cat.png"), sky: load("../assets/sky.jpg") };
+  const IMG = { up: load("/assets/cat-up.png"), down: load("/assets/cat.png"), sky: load("/assets/sky.jpg") };
   const ready = (img) => img.complete && img.naturalWidth > 0;
   // the logo sky with its upper half faded out, so it melts into the gradient
   let skyCanvas = null;
